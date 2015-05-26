@@ -1,0 +1,85 @@
+extends layout
+
+block content
+  h1.jumbotron Users
+   img(src='/images/mycolor.png')
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css')
+  div
+   a(href='/chat?varo=#{actual}') Back
+   h1 users online:
+   ul#usuarios
+   ul#disconnected
+    
+   ul#messages
+
+    style.
+      body { font-family:'verdana'; }
+      .starter-template {
+      padding: 40px 15px;
+      text-align: center;
+      }
+      a{
+      font-family:'verdana';
+      }
+      #usuarios{
+      color:green;
+      }
+      #disconnected{
+      color:red;
+      }
+      .navegador {
+      display: block;
+      /*   text-align: center;*/
+      /*  margin: 0 10px 0 0;*/
+      }
+      .jumbotron {
+      margin: 30px 0;
+      text-align: center;
+      color: grey;
+      background-color:#AFDFF2;
+      }
+      .jumbotron2 {
+      text-align: center;
+      color: grey;
+      background-color: white;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      #pruebi { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 80%; margin-right: .5%; }
+      form button { width: 5%; height: 100%; background: rgb(130, 224, 255); border: none; padding: 2px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    
+  
+  script(src='https://cdn.socket.io/socket.io-1.2.0.js') 
+  script(src='http://code.jquery.com/jquery-1.11.1.js') 
+  script.
+    var string = "#{users}";
+    var array = string.split(",");
+    for(i in array){
+    var t = array[i];
+    var s = t.valueOf();
+    var usus = $('#usuarios');
+    var html2 = $("<li>"+ s +"</li>");
+    usus.append(html2);
+    }
+
+    var string4 = "#{discons}";
+    var array2 = string4.split(",");
+    if (array2[0] != ""){
+    for(i in array2){
+    var t2 = array2[i];
+    var s2 = t2.valueOf();
+    var discon = $('#disconnected');
+    var html3 = $("<li>" + s2 + " left the room</li>");
+    discon.append(html3);
+    }
+    
+    }
+
+
+
+  

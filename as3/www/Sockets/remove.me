@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<script src="http://code.jquery.com/jquery-2.1.0.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+	</head>
+	<style>
+		#button {
+			width: 100px;
+			height: 50px;
+			border: 1px solid black;
+		
+		}
+	</style>
+	<body>	
+		<script>
+	
+		var socket = io.connect('ws://localhost:7080');
+		  
+		  socket.on('news', function (data) {
+			
+			$("#log").append("<p> News: "+data.newsItem+"<p>");
+			
+			//socket.emit('serverlog', { my: 'data' });
+		  });
+		  
+		 sayHiToServer = function() {
+			socket.emit('hello', {}   );
+		 };
+		
+	</script>
+		<div id="button" onclick="sayHiToServer()">
+		Click To Say Hi To Server
+		</div>
+		
+		<div id="log">
+		
+		</div>
+	</body>
+</html>
+		
